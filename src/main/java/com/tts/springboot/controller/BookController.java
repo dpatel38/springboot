@@ -14,16 +14,18 @@ import java.util.List;
 @RequestMapping("/api/books")
 public class BookController {
 
+    //this is a form of dependency injection
+    //we are allowing BookController to pick up a candidate for this field
     @Autowired
     private BookRepository bookRepository;
 
     @GetMapping
-    public Iterable findAll() {
+    public Iterable<Book> findAll() {
         return bookRepository.findAll();
     }
 
     @GetMapping("/title/{bookTitle}")
-    public List findByTitle(@PathVariable String bookTitle) {
+    public List<Book> findByTitle(@PathVariable String bookTitle) {
         return bookRepository.findByTitle(bookTitle);
     }
 
